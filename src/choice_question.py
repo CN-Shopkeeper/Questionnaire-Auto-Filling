@@ -105,7 +105,7 @@ class DanXuan(XuanZe):
 
                 # Shopkeeper的虹吸算法
                 influence = 0
-                dpRight = 0.01/(sophtonCenterLeft+1)
+                dpRight = (_errorPrecision/10)/(sophtonCenterLeft+1)
                 for i in range(sophtonCenterRight):
                     if probabilities[i]-dpRight >= 0 and probabilities[sophtonCenterRight]+dpRight <= 1:
                         probabilities[i] -= dpRight
@@ -134,7 +134,7 @@ class DanXuan(XuanZe):
             while varianceDiff > _errorPrecision:
                 # Shopkeeper的虹吸算法(逆)
                 influence = 0
-                dpRight = 0.01/(sophtonCenterLeft+1)
+                dpRight = (_errorPrecision/10)/(sophtonCenterLeft+1)
                 # print(dpRight)
                 for i in range(sophtonCenterRight):
                     if probabilities[i]+dpRight <= 1 and probabilities[sophtonCenterRight]-dpRight >= 0:
