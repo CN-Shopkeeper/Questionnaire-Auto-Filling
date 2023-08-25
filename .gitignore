@@ -1,5 +1,6 @@
 reference
 .vscode
+src/environments.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

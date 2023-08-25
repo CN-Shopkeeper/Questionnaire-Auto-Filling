@@ -1,10 +1,8 @@
 # Questionnaire-Auto-Filling
 
-## 脚本参考
+## 实现效果
 
-https://blog.csdn.net/m0_68174024/article/details/129598729
-
-https://blog.csdn.net/Tom197/article/details/122361835
+![实现效果](./images/snapshot.gif)
 
 ## shopkeeper 的虹吸算法
 
