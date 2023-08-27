@@ -1,8 +1,6 @@
 from selenium import webdriver  # selenium库
 from selenium.webdriver.common.by import By
-import random  # 用于产生随机数
 import time  # 用于延时
-import pyautogui  # 用于模拟人手
 
 # ! ignored by .gitignore
 import environments as env

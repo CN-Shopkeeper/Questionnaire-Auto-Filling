@@ -1,3 +1,2 @@
 selenium==4.11.2
-pyautogui==0.9.54
-scrpy==1.10.0
+scipy==1.10.0
