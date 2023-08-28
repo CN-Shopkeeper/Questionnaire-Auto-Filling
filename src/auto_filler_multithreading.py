@@ -31,7 +31,10 @@ count = 0
 count_lock = threading.Lock()  # 创建互斥锁
 
 
-def fill_a_questionnaire(driver):
+def fill_a_questionnaire():
+    driver = webdriver.Chrome(options=option)
+    driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',
+                           {'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'})
     # 获取问卷答案
     a, b0, b1, c, c7, d = ques.getAnswers()
 
@@ -175,8 +178,6 @@ def fill_a_questionnaire(driver):
                 driver.execute_script(
                     "arguments[0].click();", rowStyles[rowStyle])
                 # time.sleep(0.2)
-    # 延时3分钟提交
-    time.sleep(3 * 60)  # Sleep for 3 minutes
     # 提交结果
     submit = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, "answer-submit-btn")))
@@ -184,30 +185,31 @@ def fill_a_questionnaire(driver):
         "arguments[0].scrollIntoView();", submit)
     driver.execute_script(
         "arguments[0].click();", submit)
+    time.sleep(10)
+    driver.quit()
 
 
 def worker(thread_id):
-    driver_ = webdriver.Chrome(options=option)
-    driver_.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',
-                            {'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'})
-
-    global count
-    for i in range(50):
-        with count_lock:  # 使用互斥锁来保护对全局变量的访问
+    try:
+        global count
+        for i in range(20):
             print(f"Thread {thread_id}: Iteration {i+1}, started")
-            fill_a_questionnaire(driver_)
-            count += 1
-            print(
-                f"Thread {thread_id}: Iteration {i+1}, finished, Count {count}")
+            fill_a_questionnaire()
+            with count_lock:  # 使用互斥锁来保护对全局变量的访问
+                count += 1
+                print(
+                    f"Thread {thread_id}: Iteration {i+1}, finished, Count {count}")
 
-    driver_.quit()
+    except Exception as e:
+        print(f"Exception in Thread {thread_id}: {e}")
 
 
 def main():
-    max_threads = 20
+    max_threads = 5
     with concurrent.futures.ThreadPoolExecutor(max_threads) as executor:
         # 提交任务给线程池执行
         for thread_id in range(max_threads):
+            time.sleep(5)
             executor.submit(worker, thread_id)
 
 

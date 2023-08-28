@@ -40,7 +40,25 @@
 
 3. 根据你的问卷题目修改`./src/questionnaire.py`
 
-4. 运行`auto_filler.py`
+4. 如果只想填写一份问卷，运行`auto_filler.py`
+
+   ```shell
+   python ./src/auto_filler.py
+   ```
+
+5. 如果填写若干份问卷，需要自行设置`auto_filler_multithreading.py`中的线程池数量以及一个`worker`的循环数
+
+   ```python
+   def worker(thread_id):
+       for i in range(20):
+
+   def main():
+       max_threads = 5
+       with concurrent.futures.ThreadPoolExecutor(max_threads) as executor:
+           for thread_id in range(max_threads):
+               executor.submit(worker, thread_id)
+
+   ```
 
    ```shell
    python ./src/auto_filler.py
