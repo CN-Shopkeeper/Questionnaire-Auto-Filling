@@ -8,7 +8,8 @@
  ┃ ┣ 📜 choice_question.py - 单选题、多选题类
  ┃ ┣ 📜 questionnaire.py - 根据实际问卷生成答案
  ┃ ┣ 📜 environments.py - 包含问卷链接与Chrome Dirver地址，被.gitignore忽略，需手动重新创建
- ┃ ┗ 📜 auto_filler.py - 自动填写一份问卷
+ ┃ ┣ 📜 auto_filler.py - 自动填写一份问卷
+ ┃ ┗ 📜 auto_filler_multithreading.py - 使用20个线程填写共1000个问卷
  ┣ 📂 images
  ┣ 📜 README.md
  ┣ 📜 .gitignore
@@ -19,18 +20,18 @@
 
 1. 安装依赖
 
-```shell
-pip install -r requirements.txt
-```
+   ```shell
+   pip install -r requirements.txt
+   ```
 
-2. 生成`./src/enviroments.py`
+2. 生成`./src/environments.py`
 
    定义两个变量——问卷链接`url_survey`和 Chrome Driver 地址`binary_path`。
 
    例如：
 
    ```python
-    # ./src/enviroments.py
+    # ./src/environments.py
 
     url_survey = 'https://www.wenjuan.com/s/你的问卷地址/'
 
@@ -47,7 +48,11 @@ pip install -r requirements.txt
 
 ## 实现效果
 
-![实现效果](./images/snapshot.gif)
+1. auto_filler.py
+   ![实现效果](./images/snapshot.gif)
+
+2. auto_filler_multithreading.py
+   ![multithreading](./images/multithreading.png)
 
 ## shopkeeper 的虹吸算法
 
