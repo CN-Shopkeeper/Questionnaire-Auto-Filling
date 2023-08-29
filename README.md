@@ -9,7 +9,7 @@
  ┃ ┣ 📜 questionnaire.py - 根据实际问卷生成答案
  ┃ ┣ 📜 environments.py - 包含问卷链接与Chrome Dirver地址，被.gitignore忽略，需手动重新创建
  ┃ ┣ 📜 auto_filler.py - 自动填写一份问卷
- ┃ ┗ 📜 auto_filler_multithreading.py - 使用20个线程填写共1000个问卷
+ ┃ ┗ 📜 auto_filler_multithreading.py - 使用5个线程填写共100个问卷
  ┣ 📂 images
  ┣ 📜 README.md
  ┣ 📜 .gitignore
@@ -67,9 +67,11 @@
 ## 实现效果
 
 1. auto_filler.py
+
    ![实现效果](./images/snapshot.gif)
 
-2. auto_filler_multithreading.py
+3. auto_filler_multithreading.py
+
    ![multithreading](./images/multithreading.png)
 
 ## shopkeeper 的虹吸算法
